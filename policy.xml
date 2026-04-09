@@ -1,1 +1,17 @@
+<policies>
+  <inbound>
+    <base />
+    <rate-limit calls="10" renewal-period="60" />
+    <set-header name="x-apim" exists-action="override">
+      <value>true</value>
+    </set-header>
+  </inbound>
 
+  <backend>
+    <base />
+  </backend>
+
+  <outbound>
+    <base />
+  </outbound>
+</policies>

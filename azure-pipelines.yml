@@ -1,1 +1,26 @@
+trigger:
+- main
 
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  ARM_CLIENT_ID: $(servicePrincipalId)
+  ARM_CLIENT_SECRET: $(servicePrincipalKey)
+  ARM_SUBSCRIPTION_ID: $(subscriptionId)
+  ARM_TENANT_ID: $(tenantId)
+
+steps:
+
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: '1.5.0'
+
+- script: terraform init
+  displayName: Init
+
+- script: terraform plan -out=tfplan
+  displayName: Plan
+
+- script: terraform apply -auto-approve tfplan
+  displayName: Apply

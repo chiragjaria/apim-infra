@@ -1,1 +1,6 @@
-
+resource_group_name = "chirag-rg"
+location            = "Central India"
+apim_name           = "chirag-apim"
+publisher_name      = "Chirag"
+publisher_email     = "chirag.jaria@gmail.com"
+function_app_url    = "https://func-sb-dev-cj.azurewebsites.net/api"

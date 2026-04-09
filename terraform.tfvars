@@ -1,4 +1,4 @@
-resource_group_name = "chirag-rg"
+resource_group_name = "rgp-dev-mes"
 location            = "Central India"
 apim_name           = "chirag-apim"
 publisher_name      = "Chirag"

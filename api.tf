@@ -18,7 +18,7 @@ resource "azurerm_api_management_api_operation" "create_order" {
 
   display_name = "Create Order"
   method       = "POST"
-  url_template = "/"
+  url_template = "/orders"
 }
 
 resource "azurerm_api_management_api_policy" "policy" {

@@ -4,23 +4,21 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-variables:
-  ARM_CLIENT_ID: $(servicePrincipalId)
-  ARM_CLIENT_SECRET: $(servicePrincipalKey)
-  ARM_SUBSCRIPTION_ID: $(subscriptionId)
-  ARM_TENANT_ID: $(tenantId)
-
 steps:
 
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: '1.5.0'
 
-- script: terraform init
-  displayName: Init
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'azure-service-connection'  # 👈 replace this
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      echo "Logged into Azure"
+      az account show
 
-- script: terraform plan -out=tfplan
-  displayName: Plan
-
-- script: terraform apply -auto-approve tfplan
-  displayName: Apply
+      terraform init
+      terraform plan -out=tfplan
+      terraform apply -auto-approve tfplan
